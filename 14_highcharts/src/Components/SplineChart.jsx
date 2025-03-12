@@ -1,57 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const SplineChart = () => {
-  const options = {
-    chart: {
-      type: "spline",
-    },
-    title: {
-      text: "Monthly Average Temperature",
-    },
-    subtitle: {
-      text: "Source: WorldClimate.com",
-    },
-    xAxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-    },
-    yAxis: {
-      title: {
-        text: "Temperature (°C)",
-      },
-    },
-    tooltip: {
-      valueSuffix: "°C",
-    },
-    series: [
-      {
-        name: "Tokyo",
-        data: [
-          7, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
-        ],
-      },
-      {
-        name: "New York",
-        data: [-0.2, 0.8, 5.7, 11.3, 17, 22, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5],
-      },
-    ],
-  };
+  const [seriesData, setChartOptions] = useState(null);
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://172.20.43.9:84/api/event/getAlarmChartData?plantId=39&date=2025-03-12"
+        );
+        const res = await response.json();
+
+        if (!res.series) {
+          console.error("Invalid response format:", res);
+          return;
+        }
+
+        setChartOptions(res);
+        console.log("Fetched Data:", res);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(Date.UTC(2022, 8, 1, 6, 0));
+
+  return (
+    <div>
+      {seriesData ? (
+        <HighchartsReact highcharts={Highcharts} options={seriesData} />
+      ) : (
+        <p>Loading chart...</p>
+      )}
+    </div>
+  );
 };
 
 export default SplineChart;
