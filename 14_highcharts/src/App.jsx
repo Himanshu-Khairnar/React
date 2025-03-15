@@ -1,11 +1,5 @@
 import React from "react";
-import SplineChart from "./Components/SplineChart";
-import WMSGraph from "./Components/WMSGraph";
-import SMBGraph from "./Components/SMBGraph";
-import PieChart from "./Components/PieChart";
-import InverterChart from "./Components/InverterChart";
-import ChartData from "./Components/ChartData";
-import MFMChart from "./Components/MFMChart";
+
 import Chart from "./Components/Chart";
 
 const App = () => {
