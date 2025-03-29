@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Recipe from "./page/Recipe";
 import About from "./page/About";
+import SearchRecipe from "./page/SearchRecipe";
+import RecipeInfo from "./page/RecipeInfo";
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipe" element={<Recipe />} />
         <Route path="/about" element={<About />} />
+        <Route path="/searchRecipe" element={<SearchRecipe />} />
+        <Route path="/recipeInfo" element={<RecipeInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>

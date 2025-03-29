@@ -11,7 +11,7 @@ export default function Cards({ data }) {
       <div className=" w-full py-5 px-7  ">
         <Link
           to={{
-            pathname: "/recipe  ",
+            pathname: "/recipeInfo",
             search: `?id=${data.idMeal}`,
           }}
           className="text-xl  flex group-hover:bg-primary w-48 p-1 rounded-xl group-hover:scale-101 group-hover:animate-bounce hover:bg-yellows"

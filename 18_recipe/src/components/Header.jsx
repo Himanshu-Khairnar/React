@@ -1,10 +1,18 @@
 import { Coffee, Search, Menu } from "lucide-react";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const [search, setSearch] = useState("");
+  const SearchRecipes = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/searchRecipe?value=${search}`);
+      setSearch("");
+    }
+  };
   return (
     <div>
       <div className="h-3 bg-primary" />
@@ -19,7 +27,7 @@ export default function Header() {
           </h2>
         </div>
 
-        <ul className="hidden md:flex gap-6 text-2xl font-medium">
+        <ul className="hidden md:flex gap-14 text-2xl font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -52,6 +60,9 @@ export default function Header() {
             type="text"
             placeholder="Search Recipe"
             className="w-52 p-2 pl-10 rounded-full bg-white border border-gray-300 focus:outline-primary"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => SearchRecipes(e)}
           />
         </div>
 
@@ -89,6 +100,9 @@ export default function Header() {
               type="text"
               placeholder="Search Recipe"
               className="w-52 p-2 pl-10 rounded-full bg-white border border-gray-300 focus:outline-primary"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => SearchRecipes(e)}
             />
           </div>
         </div>

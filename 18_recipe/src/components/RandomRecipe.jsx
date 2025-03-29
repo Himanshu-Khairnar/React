@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cards from "./Cards";
 
-export default function RandomRecipe({ url, headerText ,limit}) {
+export default function   RandomRecipe({ url, headerText ,limit}) {
   const cardsLimit=parseInt(limit)
   
   const [jsonData, setJsonData] = useState([]);
@@ -16,7 +16,7 @@ export default function RandomRecipe({ url, headerText ,limit}) {
     return () => {
       getdata();
     };
-  }, []);
+  }, [headerText]);
   return (
     <div className="flex flex-col p-20">
       <h2 className="text-3xl font-bold mb-4">{headerText}</h2>
