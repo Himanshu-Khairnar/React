@@ -5,8 +5,8 @@ export default function Recipe() {
   return (
     <div>
       <RandomRecipe
-        url="www.themealdb.com/api/json/v1/1/filter.php?a=Indian"
-        headerText="Most Liked 🩷"
+        url="https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian"
+        headerText="Indian Food 🇮🇳"
         limit="30"
       />
     </div>
