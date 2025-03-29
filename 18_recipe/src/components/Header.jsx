@@ -19,7 +19,7 @@ export default function Header() {
           </h2>
         </div>
 
-        <ul className="hidden md:flex gap-6 text-lg font-medium">
+        <ul className="hidden md:flex gap-6 text-2xl font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -34,7 +34,7 @@ export default function Header() {
               isActive ? "text-primary" : "text-black"
             }
           >
-            Recipe
+            Recipe's 🇮🇳
           </NavLink>
           <NavLink
             to="/about"

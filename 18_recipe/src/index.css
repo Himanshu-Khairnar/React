@@ -2,9 +2,14 @@
 
 @theme {
   --color-primary: #FFDB63;
-  --color-white: #F5F2F2;
+  --color-whites: #F5F2F2;
   --color-yellows: #FFE9A1;
   --color-midnight: #121063;
   --color-tahiti: #3ab7bf;
   --color-bermuda: #78dcca;
+  
+}
+
+*{
+  font-family:monospace;
 }
