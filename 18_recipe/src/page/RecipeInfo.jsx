@@ -12,11 +12,10 @@ export default function RecipeInfo() {
       const res = await fetch(
         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${value}`
       );
-      console.log(value);
       
       const data = await res.json();
       setData(data.meals[0]);
-      console.log();
+
       
     };
     getdata(value);

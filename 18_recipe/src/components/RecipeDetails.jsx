@@ -1,22 +1,25 @@
-import { ArrowRight } from 'lucide-react';
-import React from 'react'
+import { ArrowRight } from "lucide-react";
+import React from "react";
+import { Link } from "react-router";
 
-export default function RecipeDetails({data}) {
+export default function ecipeDetails({ data }) {
+  const formattedInstruction = data.strInstructions?.replace(/\r\n/g, "<br/>");
+  const htmlFormatedInstruction = formattedInstruction?.replace(/\r/g, "<br/>");
+  let ingredientMeasurement = [];
 
-    const formattedInstruction = data.strInstructions?.replace(/\r\n/g, "<br/>");
-    const htmlFormatedInstruction = formattedInstruction?.replace(/\r/g, "<br/>");
-    let ingredientMeasurement=[];
-    
-    for (let index = 1; index < 21; index++) {
-        const data1 = "strIngredient"+index
-        const data2 = "strMeasure"+index
-        const value1 = data[data1];
-        const value2 = data[data2];
-        console.log(data);
-        
-      ingredientMeasurement = [...ingredientMeasurement, { value1, value2 }];
-        
-    }
+  for (let index = 1; index < 21; index++) {
+    const data1 = "strIngredient" + index;
+    const data2 = "strMeasure" + index;
+    const value1 = data[data1];
+    const value2 = data[data2];
+
+    ingredientMeasurement = [...ingredientMeasurement, { value1, value2 }];
+  }
+  
+    // const urlObj = new URL(data.strYoutube);
+    // const youtubeId = urlObj.searchParams.get("v");
+  
+
   return (
     <div className="bg-whites text-black p-6 rounded-xl shadow-lg max-full px-20">
       {data.strTags && (
@@ -42,28 +45,27 @@ export default function RecipeDetails({data}) {
           Ingredients
         </h2>
         <div className="space-y-2">
-          {ingredientMeasurement.filter(item=> item.value1!=="" && item.value2!=="").map((item, index) => (
-            <p key={index} className="flex items-center gap-2 text-black">
-              {item.value1} <ArrowRight className="text-yellow-400" />{" "}
-              {item.value2  }
-            </p>
-          ))}
+          {ingredientMeasurement
+            .filter((item) => item.value1 !== "" && item.value2 !== "")
+            .map((item, index) => (
+              <p key={index} className="flex items-center gap-2 text-black">
+                {item.value1} <ArrowRight className="text-yellow-400" />{" "}
+                {item.value2}
+              </p>
+            ))}
         </div>
       </div>
 
-      <div className="mt-6">
-        <iframe
-          width="100%"
-          height="315"
-          src="https://www.youtube.com/embed/43WgiNq54L8?si=Yyssmhjdl_TSmb5D"
-          title="YouTube video player"
-          className="rounded-lg border-2 border-yellow-400 lg:w-3xl md:w-2xl w-[400px]  "
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+      <div className="mt-6 flex justify-start">
+        <Link
+          to={data.strYoutube}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary hover:bg-yellows text-white font-medium py-2 px-4 rounded-md shadow-sm transition duration-300 hover"
+        >
+          🎥 WATCH VIDEO
+        </Link>
       </div>
     </div>
   );
-
 }
