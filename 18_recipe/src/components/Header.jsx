@@ -27,7 +27,7 @@ export default function Header() {
           </h2>
         </div>
 
-        <ul className="hidden md:flex gap-14 text-2xl font-medium">
+        <ul className="hidden lg:flex gap-14 text-2xl font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -54,7 +54,7 @@ export default function Header() {
           </NavLink>
         </ul>
 
-        <div className="relative hidden md:block">
+        <div className="relative hidden lg:block">
           <Search className="absolute top-2 left-3 text-gray-600 w-5 h-5" />
           <input
             type="text"
@@ -66,13 +66,13 @@ export default function Header() {
           />
         </div>
 
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           <Menu className="w-8 h-8 text-primary" />
         </button>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden flex flex-col gap-4 items-center bg-white py-4 shadow-lg">
+        <div className="lg:hidden flex flex-col gap-4 items-center bg-white py-4 shadow-lg transition-transform">
           <NavLink
             to="/"
             className="text-lg"

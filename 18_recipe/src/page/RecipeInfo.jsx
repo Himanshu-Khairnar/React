@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Hero from "../components/Hero";
+import RecipeDetails from "../components/RecipeDetails";
 
 export default function RecipeInfo() {
   const [searchParams] = useSearchParams(); // Correct usage
@@ -11,9 +12,12 @@ export default function RecipeInfo() {
       const res = await fetch(
         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${value}`
       );
+      console.log(value);
+      
       const data = await res.json();
-      setData(data.meals)
-      log
+      setData(data.meals[0]);
+      console.log();
+      
     };
     getdata(value);
     return () => {
@@ -22,7 +26,8 @@ export default function RecipeInfo() {
   }, [value]);
   return (
     <div>
-      <Her  o url={datas.strMealThumb} data={datas.strMeal} />
+      <Hero url={datas.strMealThumb} data={datas.strMeal} />
+      <RecipeDetails data={datas}/>
     </div> 
   );
 }
