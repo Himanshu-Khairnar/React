@@ -2,5 +2,8 @@
 
 @theme{
     --color-primary:#040C18;
-    --color-footer-primary:#031B34
+    --color-gradient-color:#002853;
+    --color-footer-primary:#031B34;
+    --color-text-color:#81AFDD;
+    --color-input-color:#052D56
 }
