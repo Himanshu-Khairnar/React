@@ -2,7 +2,7 @@ import React from "react";
 import FeatureBox from "./FeatureBox";
 export default function Future() {
   return (
-    <div className="flex bg-gradient-to-r from-gradient-color to-primary px-25 py-12 min-h-screen justify-between">
+    <div className="flex bg-gradient-to-r from-gradient-color to-primary px-25 py-12 min-h-screen justify-between ">
       <div className="">
         <h1 className="bg-gradient-to-r from-fuchsia-500 to-orange-400 bg-clip-text text-transparent text-[42px] font-bold w-[450px]">
           The Future is Now and You Just Need To Realize It. Step into Future
@@ -12,7 +12,7 @@ export default function Future() {
           Request Early Access to Get Started
         </p>
       </div>
-      <div className="flex flex-col gap-7 ">
+      <div className="flex flex-col gap-7  ">
         <FeatureBox
           data={"Improving end distrusts instantly "}
           para={

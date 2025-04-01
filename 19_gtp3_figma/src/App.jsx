@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Companies from './components/Companies';
 import WhatsIsGpt from './components/WhatsIsGpt';
 import Future from './components/Future';
+import Possibilites from './components/Possibilites';
 
 export default function App() {
    return (
@@ -14,6 +15,7 @@ export default function App() {
       <Companies/>
       <WhatsIsGpt/>
       <Future/>
+      <Possibilites/>
       <Footer/>
     </div>
    );
