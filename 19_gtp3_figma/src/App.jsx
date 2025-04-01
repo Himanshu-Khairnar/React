@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import Companies from './components/Companies';
 import WhatsIsGpt from './components/WhatsIsGpt';
+import Future from './components/Future';
 
 export default function App() {
    return (
@@ -12,6 +13,7 @@ export default function App() {
       <Hero/>
       <Companies/>
       <WhatsIsGpt/>
+      <Future/>
       <Footer/>
     </div>
    );

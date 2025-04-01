@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <div className="bg-gradient-to-r from-gradient-color to-primary  relative    h-[100px]">
-      <div className="h-16 md:h-20 px-4 md:px-6 lg:px-10 xl:px-20 flex items-center justify-between text-white">
+      <div className="h-16 md:h-20 px-4 md:px-6 lg:px-10 xl:px-25 flex items-center justify-between text-white">
         <ul className="flex items-center">
           <li>
             <img
