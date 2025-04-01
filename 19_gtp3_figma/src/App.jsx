@@ -6,6 +6,7 @@ import Companies from './components/Companies';
 import WhatsIsGpt from './components/WhatsIsGpt';
 import Future from './components/Future';
 import Possibilites from './components/Possibilites';
+import BlogSegment from './components/BlogSegment';
 
 export default function App() {
    return (
@@ -16,6 +17,7 @@ export default function App() {
       <WhatsIsGpt/>
       <Future/>
       <Possibilites/>
+      <BlogSegment/>
       <Footer/>
     </div>
    );
