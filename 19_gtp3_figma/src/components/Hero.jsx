@@ -18,9 +18,9 @@ export default function Hero() {
           <input
             type="text"
             placeholder="Your Email Address"
-            className="w-full md:w-[460px] h-[60px] md:h-[70px] bg-input-color px-4 rounded-lg md:rounded-l-lg mb-4 md:mb-0"
+            className="w-full md:w-[460px] h-[60px] md:h-[70px] bg-input-color px-4 rounded-l-lg md:rounded-l-lg mb-4 md:mb-0"
           />
-          <button className="bg-orange-600 w-full md:w-[175px] h-[60px] md:h-[70px] rounded-lg md:rounded-r-lg">
+          <button className="bg-orange-600 w-full md:w-[175px] h-[60px] md:h-[70px] rounded-r-lg md:rounded-r-lg">
             Get Started
           </button>
         </div>

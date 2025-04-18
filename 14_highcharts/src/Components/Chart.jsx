@@ -2,34 +2,44 @@ import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const Chart = ({url}) => {
+const Chart = ({ url }) => {
   const [seriesData, setChartOptions] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          url
-        );
-        const res = await response.json();
-
-        if (!res.series) {
-          console.error("Invalid response format:", res);
-          return;
-        }
-
-        setChartOptions(res);
-        console.log("Fetched Data:", res);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(Date.UTC(2022, 8, 1, 6, 0));
-
+  const chartData = {
+    chart: {
+      type: "line",
+    },
+    title: {
+      text: "WMS Graph",
+      align: "center",
+    },
+    yAxis: {
+      title: {
+        text: "Value",
+      },
+    },
+    xAxis: {
+      categories: ["06:00", "06:01", "06:02", "06:03", "06:04"],
+    },
+    series: [
+      { name: "GHI", data: [8, 1, 10, 21, 23] },
+      { name: "Irradiance_GHI", data: [8, 12.71, 38.55, 3.62, 1.46] },
+      { name: "Irradiance_POA", data: [10, 6, 23, 19, 26] },
+    ],
+    responsive: {
+      rules: [
+        {
+          condition: { maxWidth: 500 },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  };
   const alarmPiechartData = {
     chart: {
       type: "line",
@@ -58,6 +68,27 @@ const Chart = ({url}) => {
       },
     ],
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const res = await response.json();
+
+        if (!res.series) {
+          console.error("Invalid response format:", res);
+          return;
+        }
+
+        setChartOptions(res);
+        console.log("Fetched Data:", res);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
