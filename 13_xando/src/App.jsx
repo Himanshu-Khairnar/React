@@ -43,26 +43,39 @@ const TicTacToe = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold mb-4">Tic Tac Toe</h1>
-      <div className="grid grid-cols-3 gap-2">
-        {board.map((cell, index) => (
-          <button
-            key={index}
-            className="w-20 h-20 text-2xl font-bold flex items-center justify-center bg-gray-700 border-2 border-gray-600 rounded-md hover:bg-gray-600"
-            onClick={() => handleClick(index)}
-          >
-            {cell}
-          </button>
-        ))}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white p-4">
+      <h1 className="text-4xl font-extrabold mb-6 tracking-wide text-blue-400 drop-shadow-md">
+        Tic Tac Toe
+      </h1>
+
+      <div className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+        <div className="grid grid-cols-3 gap-3">
+          {board.map((cell, index) => (
+            <button
+              key={index}
+              onClick={() => handleClick(index)}
+              className="w-24 h-24 text-3xl font-extrabold rounded-lg shadow-inner flex items-center justify-center bg-gray-700 hover:bg-gray-600 active:scale-95 transition-transform duration-150 ease-in-out"
+            >
+              {cell}
+            </button>
+          ))}
+        </div>
+        <div className="mt-6 text-lg text-center">
+          {winner ? (
+            <p className="text-green-400 text-2xl font-bold animate-pulse">
+              🎉 Winner: {winner} 🎉
+            </p>
+          ) : (
+            <p className="text-blue-300">Current Turn: {isXTurn ? "X" : "O"}</p>
+          )}
+        </div>
+        <button
+          onClick={resetGame}
+          className="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-700 transition-colors rounded-lg text-white font-semibold shadow-md"
+        >
+          🔁 Reset Game
+        </button>
       </div>
-      {winner && <p className="mt-4 text-xl font-semibold">Winner: {winner}</p>}
-      <button
-        onClick={resetGame}
-        className="mt-4 px-4 py-2 bg-blue-500 rounded-md text-white font-bold hover:bg-blue-600"
-      >
-        Reset Game
-      </button>
     </div>
   );
 };
