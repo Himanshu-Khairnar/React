@@ -3,6 +3,7 @@ import React from "react";
 import Chart from "./Components/Chart";
 import CombinationChart from "./Components/CombinationChart";
 import Steamography from "./Components/Steamography";
+import LanguageTreeChart from "./Components/LanguageTreeChart";
 
 const App = () => {
   return (
@@ -42,6 +43,8 @@ const App = () => {
       <CombinationChart/>
       <h1>Steamography Chart</h1>
       <Steamography/>
+      <h1>Language Tree Chart</h1>
+      <LanguageTreeChart/>
     </div>
   );
 };
