@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { TodoProvider } from "./Context/TodoContext";
 import "./App.css";
-import TodoForm from "./Components/ToDoForm"
+import TodoForm from "./Components/ToDoForm";
 import TodoItem from "./Components/TodoItem";
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
   };
 
   const toggleComplete = (id) => {
-    //console.log(id);
     setTodos((prev) =>
       prev.map((prevTodo) =>
         prevTodo.id === id
@@ -34,7 +33,6 @@ function App() {
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("todos"));
-
     if (todos && todos.length > 0) {
       setTodos(todos);
     }
@@ -48,22 +46,24 @@ function App() {
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
     >
-      <div className="bg-[#172842] min-h-screen py-8">
-        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-          <h1 className="text-2xl font-bold text-center mb-8 mt-2">
+      <div className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] min-h-screen py-10 px-4">
+        <div className="w-full max-w-3xl mx-auto bg-[#1e293b] shadow-lg rounded-xl px-6 py-8 text-white border border-[#334155]">
+          <h1 className="text-3xl font-bold text-center mb-8">
             Manage Your Todos
           </h1>
-          <div className="mb-4">
-            {/* Todo form goes here */}
+
+          <div className="mb-6">
             <TodoForm />
           </div>
-          <div className="flex flex-wrap gap-y-3">
-            {/*Loop and Add TodoItem here */}
-            {todos.map((todo) => (
-              <div key={todo.id} className="w-full">
-                <TodoItem todo={todo} />
-              </div>
-            ))}
+
+          <div className="space-y-4">
+            {todos.length === 0 ? (
+              <p className="text-center text-gray-400">
+                No todos yet. Add some!
+              </p>
+            ) : (
+              todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+            )}
           </div>
         </div>
       </div>
