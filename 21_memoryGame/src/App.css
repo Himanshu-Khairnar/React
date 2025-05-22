@@ -1,0 +1,34 @@
+.perspective {
+    perspective: 1000px;
+  }
+  
+  .card {
+    transform-style: preserve-3d;
+    position: relative;
+    transform: rotateY(0deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0.75rem;
+  }
+  
+  .card-front {
+    transform: rotateY(0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+  }
+  
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+  

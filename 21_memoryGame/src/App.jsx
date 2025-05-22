@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./App.css"; 
 const emojis = ["🐶", "🍕", "🚀", "🌈", "🎲", "🎮", "🧠", "🍩"];
 
 const shuffleArray = (array) => {
@@ -61,26 +61,47 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white flex flex-col items-center py-8">
-      <h1 className="text-3xl mb-4 font-bold">Emoji Memory Duel</h1>
-      <div className="flex justify-between w-full max-w-xl text-xl mb-4">
-        <div className={turn === "A" ? "font-bold text-green-400" : ""}>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-900 to-black text-white flex flex-col items-center py-8 px-4">
+      <h1 className="text-4xl mb-6 font-bold text-gradient bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+        Emoji Memory Duel
+      </h1>
+
+      <div className="flex justify-between w-full max-w-md text-lg mb-6">
+        <div
+          className={`px-4 py-2 rounded ${
+            turn === "A"
+              ? "bg-green-500 text-white font-bold"
+              : "bg-neutral-800"
+          } transition duration-300`}
+        >
           Player A: {scores.A}
         </div>
-        <div className={turn === "B" ? "font-bold text-pink-400" : ""}>
+        <div
+          className={`px-4 py-2 rounded ${
+            turn === "B" ? "bg-pink-500 text-white font-bold" : "bg-neutral-800"
+          } transition duration-300`}
+        >
           Player B: {scores.B}
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4">
+
+      <div className="grid grid-cols-4 gap-4 max-w-xl">
         {cards.map((card) => (
           <div
             key={card.id}
-            className={`w-20 h-20 flex items-center justify-center text-3xl border border-gray-500 rounded cursor-pointer bg-neutral-800 hover:bg-neutral-700 ${
-              card.flipped || card.matched ? "" : "text-transparent"
-            }`}
+            className={`relative w-20 h-20 sm:w-24 sm:h-24 perspective`}
             onClick={() => handleCardClick(card)}
           >
-            {card.emoji}
+            <div
+              className={`card w-full h-full rounded-xl shadow-lg transition-transform duration-500 ${
+                card.flipped || card.matched ? "flipped" : ""
+              }`}
+            >
+              <div className="card-front bg-neutral-700 flex items-center justify-center text-3xl">
+                {card.emoji}
+              </div>
+              <div className="card-back bg-neutral-900 border border-neutral-600 rounded-xl"></div>
+            </div>
           </div>
         ))}
       </div>
