@@ -4,6 +4,8 @@ import { puzzle, clone } from "./utils/sudoku.js";
 const App = () => {
   const [board, setBoard] = useState(clone(puzzle));
   const [completed, setCompleted] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
 
   const isPreFilled = (row, col) => puzzle[row][col] !== null;
 
@@ -44,14 +46,17 @@ const App = () => {
     const isFilled = board.every((row) => row.every((cell) => cell !== null));
     if (isFilled && isValid(board)) {
       setCompleted(true);
+      setShowSuccessDialog(true);
     } else {
-      alert("Invalid solution or incomplete!");
+      setShowErrorDialog(true);
     }
   };
 
   const resetBoard = () => {
     setBoard(clone(puzzle));
     setCompleted(false);
+    setShowSuccessDialog(false);
+    setShowErrorDialog(false);
   };
 
   return (
@@ -102,13 +107,43 @@ const App = () => {
             🔄 Restart
           </button>
         </div>
-
-        {completed && (
-          <p className="mt-4 text-center text-green-600 font-bold text-lg">
-            🎉 Congratulations! You solved it!
-          </p>
-        )}
       </div>
+
+      {/* 🎉 Success Dialog */}
+      {showSuccessDialog && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded shadow-lg text-center">
+            <h3 className="text-xl font-semibold text-green-600 mb-2">
+              🎉 Congratulations!
+            </h3>
+            <p className="mb-4">You successfully solved the Sudoku!</p>
+            <button
+              onClick={resetBoard}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            >
+              Play Again
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ❌ Error Dialog */}
+      {showErrorDialog && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded shadow-lg text-center">
+            <h3 className="text-xl font-semibold text-red-600 mb-2">
+              ❌ Oops!
+            </h3>
+            <p className="mb-4">Your solution is invalid or incomplete.</p>
+            <button
+              onClick={() => setShowErrorDialog(false)}
+              className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
