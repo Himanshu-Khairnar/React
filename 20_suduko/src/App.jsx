@@ -59,6 +59,34 @@ const App = () => {
     setShowErrorDialog(false);
   };
 
+  const handleKeyDown = (e, row, col) => {
+    let newRow = row;
+    let newCol = col;
+
+    switch (e.key) {
+      case "ArrowUp":
+        newRow = row > 0 ? row - 1 : row;
+        break;
+      case "ArrowDown":
+        newRow = row < 8 ? row + 1 : row;
+        break;
+      case "ArrowLeft":
+        newCol = col > 0 ? col - 1 : col;
+        break;
+      case "ArrowRight":
+        newCol = col < 8 ? col + 1 : col;
+        break;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    const nextInput = document.getElementById(`${newRow}-${newCol}`);
+    if (nextInput && !isPreFilled(newRow, newCol)) {
+      nextInput.focus();
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="bg-white shadow-xl rounded-lg p-6 max-w-md w-full">
@@ -74,6 +102,7 @@ const App = () => {
 
               return (
                 <input
+                  id={`${r}-${c}`}
                   key={`${r}-${c}`}
                   className={`w-10 h-10 text-center text-lg border outline-none focus:ring-2 focus:ring-blue-400 transition 
                     ${
@@ -87,6 +116,7 @@ const App = () => {
                   value={cell === null ? "" : cell}
                   disabled={isPreFilled(r, c)}
                   onChange={(e) => handleChange(r, c, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(e, r, c)}
                 />
               );
             })
